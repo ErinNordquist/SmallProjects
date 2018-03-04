@@ -20,8 +20,26 @@ Class SeatingChart
       then @roster.add_undirected_edge($1,$2)}
   end
 
+  def find_seat(k) #find a spot in result for k
+    if @result == [] then @result = [k] else
+      lst = @roster.get_neighbors(k)
+      i = 0
+      #can either try to find a place in the current list, or build a new list
+      #around this new k or try the first and do the second if it fails
+      while(!@result.include? k || i >= lst.size)
+        if !lst.include? @result[i] && (i==lst.size-1||!lst.include? @result[i+1])
+          then @result.insert(i+1,k) end
+        i++
+      end
+      @result.include? k #check if k was added, if so - true, otherwise...I will find a solution to that soon.
+    end
+  end
+
   def get_result
-    nil
+    @roster.get_node_list.each do |kid|
+      if !@result.include? kid then
+        #NOT FINISHED
+    end
   end
 
 end

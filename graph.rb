@@ -1,7 +1,15 @@
 Class Graph
 
   def initialize
-    @nodes = Hash.new
+    @nodes = Hash.new([])
+  end
+
+  def get_node_list
+    @nodes.keys
+  end
+
+  def get_neighbors(v)
+    @nodes[v]
   end
 
   def add_vertex(v)
@@ -18,5 +26,5 @@ Class Graph
     @nodes[a] = @nodes[a] << b
     @nodes[b] = @nodes[b] << a
   end
-  
+
 end
